@@ -1,5 +1,7 @@
 import './App.css';
+
 import CharacterList from './pages/CharacterList';
+
 
 function App() {
 

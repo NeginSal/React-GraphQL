@@ -1,20 +1,12 @@
 import React from "react";
-import { useQuery, gql } from '@apollo/client';
+import { useCharacters } from "../hooks/useCharacters";
 
-const GET_CHARACTERS = gql`
-  query{
-    characters {
-      results{
-       id
-       name 
-       image
-      }
-    }
-  } 
-`;
+
+
 
 const CharacterList = () => {
-  const { data, loading, error } = useQuery(GET_CHARACTERS)
+
+  const { data, error, loading } = useCharacters()
   console.log({ data, loading, error })
   if (loading) return <div>spinner ...</div>
   if (error) return <div>something went wrong</div>
@@ -23,7 +15,7 @@ const CharacterList = () => {
       {data.characters.results.map((character) => {
         return (
           <div>
-            <img src={character.img} />
+            <img src={character.img} alt=""/>
             <h2>{character.name}</h2>
           </div>
         );
